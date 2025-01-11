@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "value": "tt-healthcare-adf-dev"
+        },
+        "AzureDataLakeStorage_ls_properties_typeProperties_url": {
+            "value": "https://nnadlsdev.dfs.core.windows.net/"
+        },
+        "AzureSqlDatabase_ls_properties_typeProperties_server": {
+            "value": "dbemr.database.windows.net"
+        },
+        "AzureSqlDatabase_ls_properties_typeProperties_database": {
+            "value": "@{linkedService().dbname}"
+        },
+        "AzureSqlDatabase_ls_properties_typeProperties_userName": {
+            "value": "sqladmin"
+        },
+        "AzureKeyVault_ls_properties_typeProperties_baseUrl": {
+            "value": "https://new-healthcare-kv.vault.azure.net/"
+        },
+        "AzureDatabricks_ls_properties_typeProperties_existingClusterId": {
+            "value": "1225-084234-nfnoyqhm"
+        }
+    }
+}

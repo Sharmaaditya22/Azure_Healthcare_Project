@@ -1,0 +1,84 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Data Factory name",
+            "defaultValue": "tt-healthcare-adf-dev"
+        },
+        "AzureDataLakeStorage_ls_properties_typeProperties_url": {
+            "type": "string",
+            "defaultValue": "https://nnadlsdev.dfs.core.windows.net/"
+        },
+        "AzureSqlDatabase_ls_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "dbemr.database.windows.net"
+        },
+        "AzureSqlDatabase_ls_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "@{linkedService().dbname}"
+        },
+        "AzureSqlDatabase_ls_properties_typeProperties_userName": {
+            "type": "string",
+            "defaultValue": "sqladmin"
+        },
+        "AzureKeyVault_ls_properties_typeProperties_baseUrl": {
+            "type": "string",
+            "defaultValue": "https://new-healthcare-kv.vault.azure.net/"
+        },
+        "AzureDatabricks_ls_properties_typeProperties_existingClusterId": {
+            "type": "string",
+            "defaultValue": "1225-084234-nfnoyqhm"
+        },
+        "containerUri": {
+            "type": "string",
+            "metadata": "URI to storage account containing linked ARM templates"
+        },
+        "containerSasToken": {
+            "type": "string",
+            "metadata": "Sas token to storage account containing linked ARM templates"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "tt-healthcare-adf-dev_ArmTemplate_0",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-03-01",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "factoryName": {
+                        "value": "[parameters('factoryName')]"
+                    },
+                    "AzureKeyVault_ls_properties_typeProperties_baseUrl": {
+                        "value": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
+                    },
+                    "AzureDataLakeStorage_ls_properties_typeProperties_url": {
+                        "value": "[parameters('AzureDataLakeStorage_ls_properties_typeProperties_url')]"
+                    },
+                    "AzureSqlDatabase_ls_properties_typeProperties_server": {
+                        "value": "[parameters('AzureSqlDatabase_ls_properties_typeProperties_server')]"
+                    },
+                    "AzureSqlDatabase_ls_properties_typeProperties_database": {
+                        "value": "[parameters('AzureSqlDatabase_ls_properties_typeProperties_database')]"
+                    },
+                    "AzureSqlDatabase_ls_properties_typeProperties_userName": {
+                        "value": "[parameters('AzureSqlDatabase_ls_properties_typeProperties_userName')]"
+                    },
+                    "AzureDatabricks_ls_properties_typeProperties_existingClusterId": {
+                        "value": "[parameters('AzureDatabricks_ls_properties_typeProperties_existingClusterId')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}
