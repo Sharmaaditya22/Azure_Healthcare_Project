@@ -57,3 +57,6 @@ Dimension tables for Patients, Providers, Diagnosis Codes, Insurance
 ✅ Delta Lake for ACID transactions and time travel
 
 ✅ Healthcare RCM-ready data model (Claims → Payments → Denials)
+
+HIGH LEVEL DESIGN
+![screenshot](https://github.com/Sharmaaditya22/Azure_Healthcare_Project/blob/b846f7229775cd46bedb148979aa6feed2451f2b/Health%20Care%20Azure%20Project.png)
